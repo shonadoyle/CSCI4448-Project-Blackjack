@@ -9,8 +9,8 @@ public class HandTest {
     void testHandValue() {
         Hand hand = new Hand();
 
-        hand.addCard(new Card("Hearts", "King"));
-        hand.addCard(new Card("Spades", "7"));
+        hand.addCard(new Card(Suit.HEARTS, Rank.KING));
+        hand.addCard(new Card(Suit.SPADES, Rank.SEVEN));
 
         assertEquals(17, hand.getValue());
     }
@@ -19,9 +19,9 @@ public class HandTest {
     void testAceAdjustment() {
         Hand hand = new Hand();
 
-        hand.addCard(new Card("Hearts", "Ace"));
-        hand.addCard(new Card("Spades", "7"));
-        hand.addCard(new Card("Clubs", "9"));
+        hand.addCard(new Card(Suit.HEARTS, Rank.ACE));
+        hand.addCard(new Card(Suit.SPADES, Rank.SEVEN));
+        hand.addCard(new Card(Suit.CLUBS, Rank.NINE));
 
         assertEquals(17, hand.getValue());
     }
@@ -30,9 +30,9 @@ public class HandTest {
     void testMultipleAces() {
         Hand hand = new Hand();
 
-        hand.addCard(new Card("Hearts", "Ace"));
-        hand.addCard(new Card("Spades", "Ace"));
-        hand.addCard(new Card("Clubs", "9"));
+        hand.addCard(new Card(Suit.HEARTS, Rank.ACE));
+        hand.addCard(new Card(Suit.SPADES, Rank.ACE));
+        hand.addCard(new Card(Suit.CLUBS, Rank.NINE));
 
         assertEquals(21, hand.getValue());
     }
@@ -41,9 +41,9 @@ public class HandTest {
     void testBustedHand() {
         Hand hand = new Hand();
 
-        hand.addCard(new Card("Hearts", "King"));
-        hand.addCard(new Card("Spades", "Queen"));
-        hand.addCard(new Card("Clubs", "5"));
+        hand.addCard(new Card(Suit.HEARTS, Rank.KING));
+        hand.addCard(new Card(Suit.SPADES, Rank.QUEEN));
+        hand.addCard(new Card(Suit.CLUBS, Rank.FIVE));
 
         assertTrue(hand.isBusted());
     }
@@ -52,8 +52,8 @@ public class HandTest {
     void testBlackjack() {
         Hand hand = new Hand();
 
-        hand.addCard(new Card("Hearts", "Ace"));
-        hand.addCard(new Card("Spades", "King"));
+        hand.addCard(new Card(Suit.HEARTS, Rank.ACE));
+        hand.addCard(new Card(Suit.SPADES, Rank.KING));
 
         assertTrue(hand.isBlackjack());
     }
@@ -62,9 +62,9 @@ public class HandTest {
     void testThreeCard21IsNotBlackjack() {
         Hand hand = new Hand();
 
-        hand.addCard(new Card("Hearts", "7"));
-        hand.addCard(new Card("Spades", "7"));
-        hand.addCard(new Card("Clubs", "7"));
+        hand.addCard(new Card(Suit.HEARTS, Rank.SEVEN));
+        hand.addCard(new Card(Suit.SPADES, Rank.SEVEN));
+        hand.addCard(new Card(Suit.CLUBS, Rank.SEVEN));
 
         assertFalse(hand.isBlackjack());
     }

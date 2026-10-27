@@ -6,6 +6,10 @@ public class Player {
     private Hand hand;
 
     public Player(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Player name cannot be null or blank");
+        }
+
         this.name = name;
         this.hand = new Hand();
     }

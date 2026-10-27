@@ -1,60 +1,27 @@
 package blackjack;
 
+import java.util.Objects;
+
 public class Card {
 
-    private final String suit;
-    private final String rank;
+    private final Suit suit;
+    private final Rank rank;
 
-    public Card(String suit, String rank) {
-
-        // Validate suit
-        if (suit == null ||
-                !(suit.equals("Hearts") ||
-                        suit.equals("Diamonds") ||
-                        suit.equals("Clubs") ||
-                        suit.equals("Spades"))) {
-
-            throw new IllegalArgumentException("Invalid card suit: " + suit);
-        }
-
-        // Validate rank
-        if (rank == null ||
-                !(rank.equals("Ace") ||
-                        rank.equals("King") ||
-                        rank.equals("Queen") ||
-                        rank.equals("Jack") ||
-                        rank.matches("([2-9]|10)"))) {
-
-            throw new IllegalArgumentException("Invalid card rank: " + rank);
-        }
-
-        this.suit = suit;
-        this.rank = rank;
+    public Card(Suit suit, Rank rank) {
+        this.suit = Objects.requireNonNull(suit, "Suit cannot be null");
+        this.rank = Objects.requireNonNull(rank, "Rank cannot be null");
     }
 
-    public String getSuit(){
+    public Suit getSuit(){
         return this.suit;
     }
 
-    public String getRank(){
+    public Rank getRank(){
         return this.rank;
     }
 
     public int getValue() {
-        switch (rank) {
-
-            case "Ace":
-                return 11;
-
-            case "King":
-            case "Queen":
-            case "Jack":
-                return 10;
-
-            default:
-                return Integer.parseInt(rank);
-
-        }
+        return rank.getValue();
     }
 
     @Override
@@ -62,5 +29,3 @@ public class Card {
         return rank + " of " + suit;
     }
 }
-
-

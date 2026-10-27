@@ -13,10 +13,24 @@ public class PlayerTest {
     }
 
     @Test
+    void testNullName() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Player(null);
+        });
+    }
+
+    @Test
+    void testBlankName() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Player("   ");
+        });
+    }
+
+    @Test
     void testReceiveCard() {
         Player player = new Player("Shona");
 
-        player.receiveCard(new Card("Hearts", "King"));
+        player.receiveCard(new Card(Suit.HEARTS, Rank.KING));
 
         assertEquals(10, player.getHand().getValue());
         assertEquals(1, player.getHand().getCards().size());
@@ -26,7 +40,7 @@ public class PlayerTest {
     void testClearHand() {
         Player player = new Player("Shona");
 
-        player.receiveCard(new Card("Hearts", "Ace"));
+        player.receiveCard(new Card(Suit.HEARTS, Rank.ACE));
         player.clearHand();
 
         assertEquals(0, player.getHand().getCards().size());

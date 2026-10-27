@@ -11,8 +11,8 @@ public class AutomatedPlayerTest {
                 "Conservative", new ConservativeStrategy()
         );
 
-        player.receiveCard(new Card("Hearts", "10"));
-        player.receiveCard(new Card("Spades", "5"));
+        player.receiveCard(new Card(Suit.HEARTS, Rank.TEN));
+        player.receiveCard(new Card(Suit.SPADES, Rank.FIVE));
 
         assertFalse(player.shouldHit());
     }
@@ -23,8 +23,8 @@ public class AutomatedPlayerTest {
                 "Dealer", new DealerStrategy()
         );
 
-        player.receiveCard(new Card("Hearts", "10"));
-        player.receiveCard(new Card("Spades", "5"));
+        player.receiveCard(new Card(Suit.HEARTS, Rank.TEN));
+        player.receiveCard(new Card(Suit.SPADES, Rank.FIVE));
 
         assertTrue(player.shouldHit());
     }
